@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Sam Viju Varghese</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:     #050d1a;
+      --bg2:    #07111f;
+      --card:   #0d1f35;
+      --cyan:   #00d4ff;
+      --blue:   #0ea5e9;
+      --text:   #e2e8f0;
+      --muted:  #64748b;
+      --border: rgba(0,212,255,0.18);
+      --r:      14px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+    /* ══ NAVBAR ══════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
+      background: rgba(5,13,26,0.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border); transition: box-shadow .3s;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 700; white-space: nowrap; }
+    .nav-icon { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; background: linear-gradient(135deg, var(--cyan), var(--blue)); display: grid; place-items: center; }
+    .nav-icon svg { width: 20px; height: 20px; color: #fff; }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a { padding: 7px 12px; border-radius: 8px; font-size: .83rem; color: #94a3b8; transition: color .2s, background .2s; white-space: nowrap; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.07); }
+
+    /* ══ SECTION BACKGROUNDS ═════════════════════════ */
+    .bg-molecule {
+      background-color: var(--bg2);
+      background-image:
+        radial-gradient(ellipse 70% 50% at 10% 50%, rgba(0,212,255,0.06) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Ccircle cx='40' cy='20' r='2.5' fill='none' stroke='rgba(0,212,255,0.18)' stroke-width='1'/%3E%3Ccircle cx='10' cy='56' r='2.5' fill='none' stroke='rgba(0,212,255,0.18)' stroke-width='1'/%3E%3Ccircle cx='70' cy='56' r='2.5' fill='none' stroke='rgba(0,212,255,0.18)' stroke-width='1'/%3E%3Ccircle cx='40' cy='72' r='2.5' fill='none' stroke='rgba(0,212,255,0.18)' stroke-width='1'/%3E%3Cline x1='40' y1='20' x2='10' y2='56' stroke='rgba(0,212,255,0.1)' stroke-width='0.8'/%3E%3Cline x1='40' y1='20' x2='70' y2='56' stroke='rgba(0,212,255,0.1)' stroke-width='0.8'/%3E%3Cline x1='10' y1='56' x2='40' y2='72' stroke='rgba(0,212,255,0.1)' stroke-width='0.8'/%3E%3Cline x1='70' y1='56' x2='40' y2='72' stroke='rgba(0,212,255,0.1)' stroke-width='0.8'/%3E%3C/svg%3E");
+    }
+    .bg-circuit {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 90% 50%, rgba(14,165,233,0.05) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 30h25M35 30h25M30 0v25M30 35v25' stroke='rgba(0,212,255,0.1)' stroke-width='0.7'/%3E%3Ccircle cx='30' cy='30' r='3' fill='none' stroke='rgba(0,212,255,0.14)' stroke-width='1'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='rgba(0,212,255,0.12)'/%3E%3Ccircle cx='60' cy='0' r='1.5' fill='rgba(0,212,255,0.12)'/%3E%3Ccircle cx='0' cy='60' r='1.5' fill='rgba(0,212,255,0.12)'/%3E%3Ccircle cx='60' cy='60' r='1.5' fill='rgba(0,212,255,0.12)'/%3E%3C/svg%3E");
+    }
+    .bg-hex {
+      background-color: var(--bg2);
+      background-image:
+        radial-gradient(ellipse 80% 80% at 50% 0%, rgba(0,212,255,0.05) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 2 L54 17 L54 47 L28 62 L2 47 L2 17 Z' fill='none' stroke='rgba(0,212,255,0.1)' stroke-width='1'/%3E%3Cpath d='M28 62 L54 77 L54 107 L28 122 L2 107 L2 77 Z' fill='none' stroke='rgba(0,212,255,0.1)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+    .bg-dna {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 60% 80% at 0% 50%, rgba(0,212,255,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 80% at 100% 50%, rgba(14,165,233,0.04) 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='120'%3E%3Cpath d='M5 0 Q20 30 5 60 Q-10 90 5 120' fill='none' stroke='rgba(0,212,255,0.12)' stroke-width='1'/%3E%3Cpath d='M35 0 Q20 30 35 60 Q50 90 35 120' fill='none' stroke='rgba(0,212,255,0.12)' stroke-width='1'/%3E%3Cline x1='5' y1='20' x2='35' y2='20' stroke='rgba(0,212,255,0.08)' stroke-width='0.8'/%3E%3Cline x1='8' y1='40' x2='32' y2='40' stroke='rgba(0,212,255,0.08)' stroke-width='0.8'/%3E%3Cline x1='5' y1='60' x2='35' y2='60' stroke='rgba(0,212,255,0.08)' stroke-width='0.8'/%3E%3Cline x1='8' y1='80' x2='32' y2='80' stroke='rgba(0,212,255,0.08)' stroke-width='0.8'/%3E%3Cline x1='5' y1='100' x2='35' y2='100' stroke='rgba(0,212,255,0.08)' stroke-width='0.8'/%3E%3C/svg%3E");
+    }
+    .bg-pub {
+      background-color: var(--bg2);
+      background-image:
+        radial-gradient(ellipse 60% 60% at 80% 30%, rgba(0,212,255,0.05) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Cpath d='M10 10 L90 10 M10 20 L70 20 M10 30 L80 30 M10 40 L60 40 M10 50 L75 50' stroke='rgba(0,212,255,0.07)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
+    /* ══ HERO ════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 80px 80px 60px; position: relative; overflow: hidden;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 70% 70% at 75% 50%, rgba(0,212,255,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(14,165,233,0.06) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1' fill='rgba(0,212,255,0.25)'/%3E%3Ccircle cx='80' cy='0' r='1' fill='rgba(0,212,255,0.25)'/%3E%3Ccircle cx='0' cy='80' r='1' fill='rgba(0,212,255,0.25)'/%3E%3Ccircle cx='80' cy='80' r='1' fill='rgba(0,212,255,0.25)'/%3E%3Ccircle cx='40' cy='40' r='0.8' fill='rgba(0,212,255,0.15)'/%3E%3C/svg%3E");
+    }
+    .hero-content { position: relative; max-width: 760px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border: 1px solid var(--cyan); border-radius: 20px; font-size: .72rem; font-weight: 700; letter-spacing: .12em; color: var(--cyan); margin-bottom: 28px; }
+    .hero-badge svg { width: 13px; height: 13px; }
+    .hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
+    .hero-title span { color: var(--cyan); }
+    .hero-sub { font-size: 1rem; color: #94a3b8; max-width: 580px; margin-bottom: 40px; line-height: 1.85; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: linear-gradient(135deg, var(--cyan), var(--blue)); color: #000; font-weight: 700; border-radius: 12px; font-size: .95rem; transition: transform .2s, opacity .2s; }
+    .btn-primary:hover { transform: translateY(-2px); opacity: .9; }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border: 1px solid rgba(0,212,255,0.4); color: var(--cyan); font-weight: 600; border-radius: 12px; font-size: .95rem; background: rgba(0,212,255,0.05); transition: transform .2s, background .2s; }
+    .btn-secondary:hover { transform: translateY(-2px); background: rgba(0,212,255,0.12); }
+
+    /* ══ SECTION BASE ════════════════════════════════ */
+    section { padding: 90px 80px; }
+    .section-label { font-size: .72rem; font-weight: 700; letter-spacing: .14em; color: var(--cyan); margin-bottom: 10px; }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 52px; }
+    .section-title span { color: var(--cyan); }
+
+    /* ══ ABOUT ═══════════════════════════════════════ */
+    .about-grid { display: grid; grid-template-columns: 220px 1fr 1fr; gap: 40px; align-items: start; }
+    .profile-photo-wrap { position: sticky; top: 84px; align-self: start; }
+    .profile-photo { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid var(--cyan); box-shadow: 0 0 0 6px rgba(0,212,255,0.1), 0 0 30px rgba(0,212,255,0.25); display: block; }
+    .profile-photo-fallback { width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, var(--card), #0a1e36); border: 3px solid var(--cyan); box-shadow: 0 0 0 6px rgba(0,212,255,0.1), 0 0 30px rgba(0,212,255,0.25); display: grid; place-items: center; }
+    .profile-photo-fallback svg { width: 80px; height: 80px; color: var(--cyan); opacity: .4; }
+    .profile-name { margin-top: 14px; font-weight: 700; font-size: .97rem; text-align: center; }
+    .profile-role { font-size: .8rem; color: var(--cyan); text-align: center; margin-top: 3px; }
+    .profile-loc { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 3px; }
+    .about-text blockquote { border-left: 3px solid var(--cyan); padding-left: 20px; color: #94a3b8; font-size: .96rem; margin-bottom: 22px; line-height: 1.85; }
+    .about-text p { color: #94a3b8; font-size: .93rem; line-height: 1.9; margin-bottom: 24px; }
+    .about-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .about-link-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 8px; font-size: .83rem; font-weight: 600; border: 1px solid var(--border); color: var(--cyan); background: rgba(0,212,255,0.07); transition: background .2s, border-color .2s, transform .2s; }
+    .about-link-btn:hover { background: rgba(0,212,255,0.15); border-color: var(--cyan); transform: translateY(-2px); }
+    .about-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .info-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 18px 20px; }
+    .info-card .lbl { font-size: .69rem; font-weight: 700; letter-spacing: .1em; color: var(--muted); margin-bottom: 5px; }
+    .info-card .val { font-size: .94rem; font-weight: 700; color: var(--cyan); }
+
+    /* ══ SKILLS ══════════════════════════════════════ */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+    .skill-card { background: rgba(13,31,53,0.8); border: 1px solid var(--border); border-radius: var(--r); padding: 28px; transition: border-color .25s, transform .25s, box-shadow .25s; backdrop-filter: blur(4px); }
+    .skill-card:hover { border-color: var(--cyan); transform: translateY(-5px); box-shadow: 0 8px 32px rgba(0,212,255,0.15); }
+    .skill-icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 16px; }
+    .skill-icon svg { width: 26px; height: 26px; }
+    .skill-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag { padding: 4px 10px; border-radius: 6px; font-size: .75rem; font-weight: 600; background: rgba(0,212,255,0.1); color: var(--cyan); border: 1px solid rgba(0,212,255,0.2); }
+
+    /* ══ RESEARCH CARDS ══════════════════════════════ */
+    .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .research-card { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; position: relative; transition: border-color .25s, transform .25s, box-shadow .25s; min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .research-card:hover { border-color: var(--cyan); transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,212,255,0.2); }
+    .rc-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .4s ease; }
+    .research-card:hover .rc-img { transform: scale(1.04); }
+    .rc-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,13,26,0.97) 0%, rgba(5,13,26,0.82) 50%, rgba(5,13,26,0.45) 100%); }
+    .rc-content { position: relative; z-index: 2; padding: 28px; }
+    .rc-top-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 3; background: linear-gradient(90deg, var(--cyan), var(--blue)); opacity: 0; transition: opacity .25s; }
+    .research-card:hover .rc-top-bar { opacity: 1; }
+    .rc-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: .72rem; font-weight: 700; letter-spacing: .06em; margin-bottom: 14px; }
+    .rc-badge.eurofins { background: rgba(0,212,255,0.15); color: var(--cyan); border: 1px solid rgba(0,212,255,0.3); }
+    .rc-badge.umich { background: rgba(255,203,5,0.15); color: #ffcb05; border: 1px solid rgba(255,203,5,0.3); }
+    .rc-badge.moderna { background: rgba(14,165,233,0.15); color: #7dd3fc; border: 1px solid rgba(14,165,233,0.3); }
+    .r-icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 14px; }
+    .r-icon svg { width: 24px; height: 24px; }
+    .research-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; color: #fff; line-height: 1.35; }
+    .research-card p { font-size: .85rem; color: #94a3b8; line-height: 1.7; }
+    .rc-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; font-size: .78rem; font-weight: 600; color: var(--cyan); opacity: .8; transition: opacity .2s; }
+    .rc-link:hover { opacity: 1; }
+    .rc-link svg { width: 12px; height: 12px; }
+
+    /* ══ TIMELINE (Experience & Education) ═══════════ */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--cyan), transparent); }
+    .tl { position: relative; margin-bottom: 36px; }
+    .tl::before { content: ''; position: absolute; left: -25px; top: 7px; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%; border: 2px solid var(--bg); }
+    .tl-date { font-size: .74rem; font-weight: 700; color: var(--cyan); margin-bottom: 4px; letter-spacing: .06em; }
+    .tl-title { font-size: .97rem; font-weight: 700; margin-bottom: 2px; }
+    .tl-org { font-size: .84rem; color: #94a3b8; margin-bottom: 10px; }
+    .tl-list { padding-left: 16px; }
+    .tl-list li { font-size: .83rem; color: #64748b; line-height: 1.7; margin-bottom: 5px; }
+    .tl-text { font-size: .83rem; color: #64748b; line-height: 1.7; }
+
+    /* ══ PUBLICATIONS ════════════════════════════════ */
+    .pub-list { display: flex; flex-direction: column; gap: 20px; }
+    .pub-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 26px 28px; transition: border-color .25s, transform .25s, box-shadow .25s; display: flex; gap: 20px; align-items: flex-start; }
+    .pub-card:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,212,255,0.12); }
+    .pub-num { font-size: 1.4rem; font-weight: 900; color: rgba(0,212,255,0.25); min-width: 32px; line-height: 1; padding-top: 2px; }
+    .pub-body { flex: 1; }
+    .pub-title { font-size: .96rem; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.45; }
+    .pub-authors { font-size: .82rem; color: var(--muted); margin-bottom: 6px; line-height: 1.5; }
+    .pub-authors strong { color: #94a3b8; }
+    .pub-journal { font-size: .8rem; font-style: italic; color: var(--cyan); opacity: .8; }
+    .pub-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .pub-tag { font-size: .72rem; padding: 3px 9px; border-radius: 5px; background: rgba(0,212,255,0.1); color: var(--cyan); border: 1px solid rgba(0,212,255,0.2); font-weight: 600; }
+    .pub-type { display: inline-flex; align-items: center; gap: 5px; font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; letter-spacing: .03em; }
+    .pub-type.journal { background: rgba(0,212,255,0.12); color: var(--cyan); border: 1px solid rgba(0,212,255,0.3); }
+    .pub-type.inprogress { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .pub-type.poster { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); }
+    .pub-doi { font-size: .78rem; margin-top: 6px; }
+    .pub-doi a { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; opacity: .8; }
+    .pub-doi a:hover { opacity: 1; }
+    .pub-empty { text-align: center; padding: 56px 24px; color: var(--muted); }
+    .pub-empty .icon { font-size: 2.5rem; margin-bottom: 14px; opacity: .4; }
+    .pub-empty p { font-size: .9rem; }
+
+    /* ══ FOOTER ══════════════════════════════════════ */
+    footer { text-align: center; padding: 28px; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--border); background: var(--bg); }
+
+    /* ══ RESPONSIVE ══════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .about-grid { grid-template-columns: 180px 1fr; }
+      .about-cards { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    }
+    @media (max-width: 860px) {
+      nav { padding: 0 16px; }
+      .nav-links a { padding: 6px 8px; font-size: .77rem; }
+      #hero { padding: 90px 24px 60px; }
+      section { padding: 70px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .profile-photo-wrap { position: static; display: flex; flex-direction: column; align-items: center; }
+      .about-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 2rem; }
+      .about-cards { grid-template-columns: 1fr; }
+      .nav-brand span { display: none; }
+      .pub-card { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-brand">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+      </svg>
+    </div>
+    <span>Sam Viju Varghese</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#research">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════ ABOUT ══════════════════════════════════════ -->
+<section id="about" class="bg-molecule">
+  <div class="section-label">WHO I AM</div>
+  <h2 class="section-title">About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="profile-photo-wrap">
+      <img src="images/profile.jpg" alt="Sam Viju Varghese" class="profile-photo"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+      <div class="profile-photo-fallback" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="profile-name">Sam Viju Varghese</div>
+      <div class="profile-role">QC Laboratory Analyst</div>
+      <div class="profile-loc">Indianapolis, IN</div>
+    </div>
+
+    <div class="about-text">
+      <p>
+        I'm a QC analyst at Eurofins obsessed with getting pharmaceutical methods right. I specialize in container closure integrity (CCIT) testing — basically making sure drug bottles don't leak and patients get safe medicine. I've worked with teams at Moderna on vaccine packaging and at Michigan Medicine on drug delivery innovations. Also a researcher at heart, which is why I have published work in biomaterials and drug delivery.
+      </p>
+      <div class="about-links">
+        <a href="https://www.linkedin.com/in/samv-varghese/" target="_blank" rel="noopener" class="about-link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:samviju@umich.edu" class="about-link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          samviju@umich.edu
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ SKILLS ════════════════════════════════════ -->
+<section id="skills" class="bg-circuit">
+  <div class="section-label">EXPERTISE</div>
+  <h2 class="section-title">What I Am <span>Good At</span></h2>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-icon" style="background:rgba(0,212,255,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h3>Quality &amp; Regulatory</h3>
+      <div class="tags">
+        <span class="tag">FMEA / CAPA</span><span class="tag">5-Why Analysis</span>
+        <span class="tag">Fishbone</span><span class="tag">Change Control</span>
+        <span class="tag">ALCOA+</span><span class="tag">Deviation Mgmt</span>
+        <span class="tag">Process Validation</span><span class="tag">Method Validation</span>
+        <span class="tag">Tech Transfer</span><span class="tag">ISO 13485</span>
+        <span class="tag">ISO 14971</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon" style="background:rgba(14,165,233,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+      </div>
+      <h3>Software Proficiency</h3>
+      <div class="tags">
+        <span class="tag">Veeva Quality Docs</span><span class="tag">Benchling (ELN)</span>
+        <span class="tag">COMSOL</span><span class="tag">SolidWorks</span>
+        <span class="tag">AutoCAD</span><span class="tag">Microsoft Office</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon" style="background:rgba(0,212,255,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2">
+          <path d="M10 2v7.31l-2.72 2.73A4 4 0 1 0 16 16V2H10z"/><path d="M10 9h6"/>
+        </svg>
+      </div>
+      <h3>Lab Techniques</h3>
+      <div class="tags">
+        <span class="tag">CCIT (USP 1207)</span><span class="tag">Aseptic Fill &amp; Finish</span>
+        <span class="tag">Visual Inspection</span><span class="tag">Stability Testing</span>
+        <span class="tag">Cell Culture</span><span class="tag">Cell Isolation</span>
+        <span class="tag">Hydrogel Fabrication</span><span class="tag">GMP / BSC</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon" style="background:rgba(14,165,233,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <h3>Analytical Methods</h3>
+      <div class="tags">
+        <span class="tag">HPLC</span><span class="tag">Rheology</span>
+        <span class="tag">FTIR</span><span class="tag">SEM</span>
+        <span class="tag">XRD</span><span class="tag">DLS</span>
+        <span class="tag">Confocal Microscopy</span><span class="tag">ELISA / BCA</span>
+        <span class="tag">Cell Viability Assays</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ RESEARCH / WORK ════════════════════════════ -->
+<section id="research" class="bg-hex">
+  <div class="section-label">PROJECTS &amp; ROLES</div>
+  <h2 class="section-title">Stuff I've <span>Worked On</span></h2>
+  <div class="research-grid">
+
+    <!-- Card 1: CCIT @ Eurofins -->
+    <div class="research-card">
+      <div class="rc-top-bar"></div>
+      <div class="rc-img" style="background-image:url('images/ccit-bg.jpg'); background-color:#0a1e36;"></div>
+      <div class="rc-overlay"></div>
+      <div class="rc-content">
+        <div class="rc-badge eurofins">📍 Eurofins PSS — Current Role</div>
+        <div class="r-icon" style="background:rgba(0,212,255,0.18);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Making sure drug bottles seal properly (CCIT Testing)</h3>
+        <p>Lead container closure integrity testing per USP 1207 — dye ingress, HVLD, and mass extraction. Transferred 7+ methods across sites, trained 25+ analysts, and authored 10+ protocols. Also running OOS investigations and generating stability data for regulatory submissions.</p>
+      </div>
+    </div>
+
+    <!-- Card 2: Smart Hydrogels @ UMich -->
+    <div class="research-card">
+      <div class="rc-top-bar"></div>
+      <div class="rc-img" style="background-image:url('images/ultrasound-bg.jpg'); background-color:#050d0f;"></div>
+      <div class="rc-overlay"></div>
+      <div class="rc-content">
+        <div class="rc-badge umich">🎓 University of Michigan, Ann Arbor</div>
+        <div class="r-icon" style="background:rgba(255,203,5,0.15);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffcb05" stroke-width="2">
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+          </svg>
+        </div>
+        <h3>Designing smart hydrogels that respond to ultrasound</h3>
+        <p>Built fibrin–alginate scaffolds with perfluorocarbon emulsions that release drugs on demand via Acoustic Droplet Vaporization (ADV). Achieved a <strong style="color:var(--cyan)">45% kPa increase</strong> in ADV gels. Also characterized pore structure, dextran release, and microbubble-induced changes through rheology — work combining tissue engineering and targeted drug delivery.</p>
+        <a href="https://www.ultrasound.med.umich.edu/principal-investigators/mario-fabiilli" target="_blank" class="rc-link">
+          Fabiilli Laboratory
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3: Freeze/Thaw @ Moderna -->
+    <div class="research-card">
+      <div class="rc-top-bar"></div>
+      <div class="rc-img" style="background-image:url('images/freezethaw-bg.jpg'); background-color:#06101a; background-size:cover; background-position:center;"></div>
+      <div class="rc-overlay"></div>
+      <div class="rc-content">
+        <div class="rc-badge moderna">🏭 Moderna — 2025 Co-op</div>
+        <div class="r-icon" style="background:rgba(14,165,233,0.18);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="2">
+            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
+          </svg>
+        </div>
+        <h3>Made sure the bottles could survive real-world shipping</h3>
+        <p>Developed 6+ COMSOL &amp; SolidWorks models (vial to pallet scale) for freeze/thaw stability and packaging qualification. Executed aseptic filling of 600+ vials in a GMP environment. Led pallet-scale shipping simulations for the Next-Gen COVID vaccine — generating regulatory-ready stability data at Moderna.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ EXPERIENCE ═════════════════════════════════ -->
+<section id="experience" class="bg-dna">
+  <div class="section-label">WORK HISTORY</div>
+  <h2 class="section-title">What I've Been <span>Up To</span></h2>
+  <div class="timeline">
+
+    <div class="tl">
+      <div class="tl-date">OCT 2025 – PRESENT</div>
+      <div class="tl-title">Quality Control – Laboratory Analyst</div>
+      <div class="tl-org">Eurofins PSS Insourcing Solutions &mdash; Indianapolis, IN</div>
+      <div class="tl-text">CCIT method validation &amp; transfer, OOS investigations, cGMP analytical testing in FDA-regulated pharma environments.</div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-date">JUL 2025 – OCT 2025</div>
+      <div class="tl-title">Research Associate</div>
+      <div class="tl-org">Michigan Medicine – Fabiilli Lab, University of Michigan &mdash; Ann Arbor, MI</div>
+      <div class="tl-text">Ultrasound-triggered drug delivery research using acoustically responsive fibrin–alginate hydrogel scaffolds and ADV.</div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-date">JAN 2025 – JUN 2025</div>
+      <div class="tl-title">Drug Product Development Co-op</div>
+      <div class="tl-org">Moderna &mdash; Norwood, MA</div>
+      <div class="tl-text">Freeze/thaw stability studies, COMSOL computational modeling, and aseptic filling in a GMP pilot-scale environment.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ PUBLICATIONS ══════════════════════════════ -->
+<section id="publications" class="bg-pub">
+  <div class="section-label">ACADEMIC OUTPUT</div>
+  <h2 class="section-title">Publications &amp; <span>Presentations</span></h2>
+  <div class="pub-list">
+
+    <!-- 01 -->
+    <div class="pub-card">
+      <div class="pub-num">01</div>
+      <div class="pub-body">
+        <div class="pub-type inprogress">🔬 In Progress</div>
+        <div class="pub-title">Stimulating Vasculogenesis via Controlled Delivery of Basic Fibroblast Growth Factor with Acoustic Droplet Vaporization (ADV)</div>
+        <div class="pub-authors"><strong>Varghese, S.V.</strong>, et al. — Fabiilli Laboratory, University of Michigan</div>
+        <div class="pub-journal">Manuscript in preparation</div>
+        <div class="pub-tags">
+          <span class="pub-tag">Vasculogenesis</span>
+          <span class="pub-tag">bFGF</span>
+          <span class="pub-tag">ADV</span>
+          <span class="pub-tag">Ultrasound</span>
+          <span class="pub-tag">Drug Delivery</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="pub-card">
+      <div class="pub-num">02</div>
+      <div class="pub-body">
+        <div class="pub-type journal">📄 Journal Article</div>
+        <div class="pub-title">Controlled Antibiotic Release from Emulsion-Loaded Alginate and Fibrin Hydrogels Using Ultrasound</div>
+        <div class="pub-authors"><strong>Varghese, S.V.</strong>, et al. — Fabiilli Laboratory, University of Michigan</div>
+        <div class="pub-journal">Journal of Biomedical Materials Research</div>
+        <div class="pub-doi">DOI: <a href="https://doi.org/10.1002/jbma.70046" target="_blank" rel="noopener">10.1002/jbma.70046</a></div>
+        <div class="pub-tags">
+          <span class="pub-tag">Antibiotics</span>
+          <span class="pub-tag">Alginate</span>
+          <span class="pub-tag">Fibrin</span>
+          <span class="pub-tag">Ultrasound</span>
+          <span class="pub-tag">Hydrogels</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="pub-card">
+      <div class="pub-num">03</div>
+      <div class="pub-body">
+        <div class="pub-type poster">📌 Poster Presentation</div>
+        <div class="pub-title">Ultrasound-Triggered Vancomycin Release from Alginate and Fibrin-Based Hydrogels Incorporating Emulsion Droplets for Localized Drug Delivery</div>
+        <div class="pub-authors"><strong>Varghese, S.V.</strong>, et al. — Fabiilli Laboratory, University of Michigan</div>
+        <div class="pub-journal">IEEE International Ultrasonics Symposium — Utrecht, Netherlands</div>
+        <div class="pub-tags">
+          <span class="pub-tag">Vancomycin</span>
+          <span class="pub-tag">Ultrasound</span>
+          <span class="pub-tag">Hydrogels</span>
+          <span class="pub-tag">IEEE IUS</span>
+          <span class="pub-tag">Localized Delivery</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="pub-card">
+      <div class="pub-num">04</div>
+      <div class="pub-body">
+        <div class="pub-type poster">📌 Poster Presentation</div>
+        <div class="pub-title">Determining the Thaw Behaviour of Various Drug Product Configurations Using Computational Modeling for Stability Studies</div>
+        <div class="pub-authors"><strong>Varghese, S.V.</strong> — Moderna, Inc.</div>
+        <div class="pub-journal">Moderna Co-op Day — Internal Symposium</div>
+        <div class="pub-tags">
+          <span class="pub-tag">Freeze/Thaw</span>
+          <span class="pub-tag">Computational Modeling</span>
+          <span class="pub-tag">Drug Product</span>
+          <span class="pub-tag">Stability</span>
+          <span class="pub-tag">Moderna</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ EDUCATION ══════════════════════════════════ -->
+<section id="education" class="bg-molecule">
+  <div class="section-label">ACADEMIC BACKGROUND</div>
+  <h2 class="section-title"><span>Education</span></h2>
+  <div class="timeline">
+
+    <div class="tl">
+      <div class="tl-date">AUG 2023 – APR 2025</div>
+      <div class="tl-title">M.S. Biomedical Engineering</div>
+      <div class="tl-org">University of Michigan, Ann Arbor &mdash; Ann Arbor, MI</div>
+      <div class="tl-text">
+        Relevant Coursework: Cellular Engineering &bull; Design of Biomaterials &bull;
+        Drug Discovery &bull; Statistics for BME
+      </div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-date">AUG 2019 – MAY 2023</div>
+      <div class="tl-title">B.Tech Biomedical Engineering</div>
+      <div class="tl-org">SRM Institute of Science and Technology &mdash; Chennai, India</div>
+      <div class="tl-text">
+        Relevant Coursework: Biomedical Instrumentation &bull; Biomechanics &bull;
+        Human Anatomy and Physiology
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Sam Viju Varghese &mdash; QC Laboratory Analyst &amp; Biomedical Engineer &mdash; Indianapolis, IN
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow =
+      window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.6)' : 'none';
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll(
+    '.skill-card,.research-card,.tl,.pub-card,.info-card,.profile-photo-wrap,.about-text'
+  ).forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(22px)';
+    el.style.transition = `opacity 0.5s ease ${i * 0.04}s, transform 0.5s ease ${i * 0.04}s`;
+    observer.observe(el);
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? '#00d4ff' : ''; });
+  });
+</script>
+</body>
+</html>
